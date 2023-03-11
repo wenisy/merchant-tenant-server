@@ -1,8 +1,12 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PropertyEntity } from '@/modules';
-import { CreatePropertyDto, PropertyFilterDto, UpdatePropertyDto } from "@modules/propertyManagement/dto";
+import {
+  CreatePropertyDto,
+  PropertyFilterDto,
+  UpdatePropertyDto,
+} from '@modules/propertyManagement/dto';
 
 @Injectable()
 class PropertyManagementService {
@@ -11,7 +15,9 @@ class PropertyManagementService {
     private propertyEntityRepository: Repository<PropertyEntity>,
   ) {}
 
-  async createProperty(createPropertyDto: CreatePropertyDto): Promise<PropertyEntity> {
+  async createProperty(
+    createPropertyDto: CreatePropertyDto,
+  ): Promise<PropertyEntity> {
     const newProperty = this.propertyEntityRepository.create(createPropertyDto);
     return await this.propertyEntityRepository.save(newProperty);
   }
@@ -19,7 +25,9 @@ class PropertyManagementService {
   async deletePropertyManagementById(id: number) {
     const result = await this.propertyEntityRepository.delete(id);
     if (result.affected === 0) {
-      throw new NotFoundException(`Property Management with ID ${id} not found`);
+      throw new NotFoundException(
+        `Property Management with ID ${id} not found`,
+      );
     }
     return { message: `Property Management with ID ${id} has been deleted` };
   }
