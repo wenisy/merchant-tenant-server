@@ -1,6 +1,6 @@
 import { IsDateString, IsOptional, IsString } from "class-validator";
 
-class CreatePropertyDto {
+class UpdatePropertyDto {
   @IsString()
   companyName: string;
   @IsString()
@@ -14,4 +14,4 @@ class CreatePropertyDto {
   remark?: string;
 }
 
-export default CreatePropertyDto;
+export default UpdatePropertyDto;

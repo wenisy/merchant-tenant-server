@@ -17,8 +17,8 @@ class PropertyEntity {
   @Column()
   address: string;
 
-  @Column('bigint')
-  establishTime: number;
+  @Column({ type: 'timestamp' })
+  establishTime: Date;
 
   @Column()
   contact: string;
@@ -29,11 +29,11 @@ class PropertyEntity {
   @Column()
   remark: string;
 
-  @Column('bigint')
-  createTime: number;
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  createTime: Date;
 
-  @Column('bigint')
-  updateTime: number;
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
+  updateTime: Date;
 }
 
 export default PropertyEntity;
